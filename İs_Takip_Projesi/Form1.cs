@@ -34,6 +34,7 @@ namespace İs_Takip_Projesi
             Formlar.FrmPersoneler frm2 = new Formlar.FrmPersoneler();
             frm2.MdiParent = this;
             frm2.Show();
+            
         }
     }
 }
