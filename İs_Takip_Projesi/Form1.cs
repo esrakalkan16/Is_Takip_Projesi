@@ -31,9 +31,7 @@ namespace İs_Takip_Projesi
 
         private void BtnPersonelListesi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Formlar.FrmPersoneler frm2 = new Formlar.FrmPersoneler();
-            frm2.MdiParent = this;
-            frm2.Show();
+            //patlatttık
             
         }
     }
