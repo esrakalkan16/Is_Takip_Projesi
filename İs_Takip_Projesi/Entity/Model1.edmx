@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DbisTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Kullanici" Type="nchar" MaxLength="10" />
+          <Property Name="Sifre" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Departmanlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Firmalar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="30" />
+          <Property Name="Yetkili" Type="nvarchar" MaxLength="30" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="20" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sektör" Type="nvarchar" MaxLength="30" />
+          <Property Name="İl" Type="nvarchar" MaxLength="20" />
+          <Property Name="İlçe" Type="nvarchar" MaxLength="30" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GorevDetaylar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Görev" Type="int" />
+          <Property Name="Açıklama" Type="nvarchar" MaxLength="200" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="Saat" Type="char" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Gorevler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="GörevVeren" Type="int" />
+          <Property Name="GörevAlan" Type="int" />
+          <Property Name="Açıklama" Type="nvarchar" MaxLength="500" />
+          <Property Name="Durum" Type="nvarchar" MaxLength="20" />
+          <Property Name="Tarih" Type="date" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Görsel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Departman" Type="int" />
+        </EntityType>
+        <Association Name="FK_GorevDetaylar_Gorevler">
+          <End Role="Gorevler" Type="Self.Gorevler" Multiplicity="0..1" />
+          <End Role="GorevDetaylar" Type="Self.GorevDetaylar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gorevler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GorevDetaylar">
+              <PropertyRef Name="Görev" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gorevler_Personel">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Gorevler" Type="Self.Gorevler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gorevler">
+              <PropertyRef Name="GörevVeren" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gorevler_Personel1">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Gorevler" Type="Self.Gorevler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gorevler">
+              <PropertyRef Name="GörevAlan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbisTakipModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departmanlar" EntityType="Self.Departmanlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firmalar" EntityType="Self.Firmalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GorevDetaylar" EntityType="Self.GorevDetaylar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gorevler" EntityType="Self.Gorevler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GorevDetaylar_Gorevler" Association="Self.FK_GorevDetaylar_Gorevler">
+            <End Role="Gorevler" EntitySet="Gorevler" />
+            <End Role="GorevDetaylar" EntitySet="GorevDetaylar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gorevler_Personel" Association="Self.FK_Gorevler_Personel">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Gorevler" EntitySet="Gorevler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gorevler_Personel1" Association="Self.FK_Gorevler_Personel1">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Gorevler" EntitySet="Gorevler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbisTakipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Kullanici" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Departmanlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Personel" Relationship="Self.FK_Personel_Departmanlar" FromRole="Departmanlar" ToRole="Personel" />
+        </EntityType>
+        <EntityType Name="Firmalar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Yetkili" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sektör" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="İl" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="İlçe" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GorevDetaylar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Görev" Type="Int32" />
+          <Property Name="Açıklama" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="Saat" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Gorevler" Relationship="Self.FK_GorevDetaylar_Gorevler" FromRole="GorevDetaylar" ToRole="Gorevler" />
+        </EntityType>
+        <EntityType Name="Gorevler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="GörevVeren" Type="Int32" />
+          <Property Name="GörevAlan" Type="Int32" />
+          <Property Name="Açıklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Durum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="GorevDetaylar" Relationship="Self.FK_GorevDetaylar_Gorevler" FromRole="Gorevler" ToRole="GorevDetaylar" />
+          <NavigationProperty Name="Personel" Relationship="Self.FK_Gorevler_Personel" FromRole="Gorevler" ToRole="Personel" />
+          <NavigationProperty Name="Personel1" Relationship="Self.FK_Gorevler_Personel1" FromRole="Gorevler" ToRole="Personel" />
+        </EntityType>
+        <EntityType Name="Personel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Görsel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Departman" Type="Int32" />
+          <NavigationProperty Name="Departmanlar" Relationship="Self.FK_Personel_Departmanlar" FromRole="Personel" ToRole="Departmanlar" />
+          <NavigationProperty Name="Gorevler" Relationship="Self.FK_Gorevler_Personel" FromRole="Personel" ToRole="Gorevler" />
+          <NavigationProperty Name="Gorevler1" Relationship="Self.FK_Gorevler_Personel1" FromRole="Personel" ToRole="Gorevler" />
+        </EntityType>
+        <Association Name="FK_Personel_Departmanlar">
+          <End Role="Departmanlar" Type="Self.Departmanlar" Multiplicity="0..1" />
+          <End Role="Personel" Type="Self.Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departmanlar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Personel">
+              <PropertyRef Name="Departman" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GorevDetaylar_Gorevler">
+          <End Role="Gorevler" Type="Self.Gorevler" Multiplicity="0..1" />
+          <End Role="GorevDetaylar" Type="Self.GorevDetaylar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gorevler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GorevDetaylar">
+              <PropertyRef Name="Görev" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gorevler_Personel">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Gorevler" Type="Self.Gorevler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gorevler">
+              <PropertyRef Name="GörevVeren" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gorevler_Personel1">
+          <End Role="Personel" Type="Self.Personel" Multiplicity="0..1" />
+          <End Role="Gorevler" Type="Self.Gorevler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Gorevler">
+              <PropertyRef Name="GörevAlan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DbisTakipEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Departmanlar" EntityType="Self.Departmanlar" />
+          <EntitySet Name="Firmalar" EntityType="Self.Firmalar" />
+          <EntitySet Name="GorevDetaylar" EntityType="Self.GorevDetaylar" />
+          <EntitySet Name="Gorevler" EntityType="Self.Gorevler" />
+          <EntitySet Name="Personel" EntityType="Self.Personel" />
+          <AssociationSet Name="FK_Personel_Departmanlar" Association="Self.FK_Personel_Departmanlar">
+            <End Role="Departmanlar" EntitySet="Departmanlar" />
+            <End Role="Personel" EntitySet="Personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GorevDetaylar_Gorevler" Association="Self.FK_GorevDetaylar_Gorevler">
+            <End Role="Gorevler" EntitySet="Gorevler" />
+            <End Role="GorevDetaylar" EntitySet="GorevDetaylar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gorevler_Personel" Association="Self.FK_Gorevler_Personel">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Gorevler" EntitySet="Gorevler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gorevler_Personel1" Association="Self.FK_Gorevler_Personel1">
+            <End Role="Personel" EntitySet="Personel" />
+            <End Role="Gorevler" EntitySet="Gorevler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DbisTakipModelStoreContainer" CdmEntityContainer="DbisTakipEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="DbisTakipModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Kullanici" ColumnName="Kullanici" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departmanlar">
+            <EntityTypeMapping TypeName="DbisTakipModel.Departmanlar">
+              <MappingFragment StoreEntitySet="Departmanlar">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firmalar">
+            <EntityTypeMapping TypeName="DbisTakipModel.Firmalar">
+              <MappingFragment StoreEntitySet="Firmalar">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Yetkili" ColumnName="Yetkili" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Sektör" ColumnName="Sektör" />
+                <ScalarProperty Name="İl" ColumnName="İl" />
+                <ScalarProperty Name="İlçe" ColumnName="İlçe" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GorevDetaylar">
+            <EntityTypeMapping TypeName="DbisTakipModel.GorevDetaylar">
+              <MappingFragment StoreEntitySet="GorevDetaylar">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Görev" ColumnName="Görev" />
+                <ScalarProperty Name="Açıklama" ColumnName="Açıklama" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Saat" ColumnName="Saat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gorevler">
+            <EntityTypeMapping TypeName="DbisTakipModel.Gorevler">
+              <MappingFragment StoreEntitySet="Gorevler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GörevVeren" ColumnName="GörevVeren" />
+                <ScalarProperty Name="GörevAlan" ColumnName="GörevAlan" />
+                <ScalarProperty Name="Açıklama" ColumnName="Açıklama" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personel">
+            <EntityTypeMapping TypeName="DbisTakipModel.Personel">
+              <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Görsel" ColumnName="Görsel" />
+                <ScalarProperty Name="Departman" ColumnName="Departman" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
