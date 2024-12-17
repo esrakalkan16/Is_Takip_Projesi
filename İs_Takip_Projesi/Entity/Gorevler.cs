@@ -24,7 +24,7 @@ namespace İs_Takip_Projesi.Entity
         public Nullable<int> GörevVeren { get; set; }
         public Nullable<int> GörevAlan { get; set; }
         public string Açıklama { get; set; }
-        public string Durum { get; set; }
+        public Nullable<bool> Durum { get; set; }
         public Nullable<System.DateTime> Tarih { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

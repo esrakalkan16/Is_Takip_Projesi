@@ -24,7 +24,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ad" Type="nvarchar" MaxLength="30" />
           <Property Name="Yetkili" Type="nvarchar" MaxLength="30" />
           <Property Name="Telefon" Type="nvarchar" MaxLength="20" />
@@ -38,7 +38,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Görev" Type="int" />
           <Property Name="Açıklama" Type="nvarchar" MaxLength="200" />
           <Property Name="Tarih" Type="date" />
@@ -48,11 +48,11 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GörevVeren" Type="int" />
           <Property Name="GörevAlan" Type="int" />
           <Property Name="Açıklama" Type="nvarchar" MaxLength="500" />
-          <Property Name="Durum" Type="nvarchar" MaxLength="20" />
+          <Property Name="Durum" Type="bit" />
           <Property Name="Tarih" Type="date" />
         </EntityType>
         <EntityType Name="Personel">
@@ -66,6 +66,7 @@
           <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
           <Property Name="Görsel" Type="nvarchar" MaxLength="50" />
           <Property Name="Departman" Type="int" />
+          <Property Name="Durum" Type="bit" />
         </EntityType>
         <Association Name="FK_GorevDetaylar_Gorevler">
           <End Role="Gorevler" Type="Self.Gorevler" Multiplicity="0..1" />
@@ -176,7 +177,7 @@
           <Property Name="GörevVeren" Type="Int32" />
           <Property Name="GörevAlan" Type="Int32" />
           <Property Name="Açıklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Durum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Durum" Type="Boolean" />
           <Property Name="Tarih" Type="DateTime" Precision="0" />
           <NavigationProperty Name="GorevDetaylar" Relationship="Self.FK_GorevDetaylar_Gorevler" FromRole="Gorevler" ToRole="GorevDetaylar" />
           <NavigationProperty Name="Personel" Relationship="Self.FK_Gorevler_Personel" FromRole="Gorevler" ToRole="Personel" />
@@ -196,6 +197,7 @@
           <NavigationProperty Name="Departmanlar" Relationship="Self.FK_Personel_Departmanlar" FromRole="Personel" ToRole="Departmanlar" />
           <NavigationProperty Name="Gorevler" Relationship="Self.FK_Gorevler_Personel" FromRole="Personel" ToRole="Gorevler" />
           <NavigationProperty Name="Gorevler1" Relationship="Self.FK_Gorevler_Personel1" FromRole="Personel" ToRole="Gorevler" />
+          <Property Name="Durum" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Personel_Departmanlar">
           <End Role="Departmanlar" Type="Self.Departmanlar" Multiplicity="0..1" />
@@ -333,6 +335,7 @@
           <EntitySetMapping Name="Personel">
             <EntityTypeMapping TypeName="DbisTakipModel.Personel">
               <MappingFragment StoreEntitySet="Personel">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ad" ColumnName="Ad" />
                 <ScalarProperty Name="Soyad" ColumnName="Soyad" />

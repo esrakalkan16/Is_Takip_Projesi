@@ -69,5 +69,10 @@ namespace İs_Takip_Projesi.Formlar
             XtraMessageBox.Show("Departman güncelleme işi başarıyla gerçekleşti.", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             Listele();
         }
+
+        private void TxtAd_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

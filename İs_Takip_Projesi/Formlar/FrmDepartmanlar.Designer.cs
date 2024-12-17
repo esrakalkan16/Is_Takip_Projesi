@@ -53,7 +53,7 @@
             this.gridControl1.Location = new System.Drawing.Point(-1, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(729, 322);
+            this.gridControl1.Size = new System.Drawing.Size(729, 346);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -75,13 +75,13 @@
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Location = new System.Drawing.Point(728, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(240, 322);
+            this.groupControl1.Size = new System.Drawing.Size(240, 346);
             this.groupControl1.TabIndex = 5;
             // 
             // BtnSil
             // 
             this.BtnSil.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnSil.ImageOptions.Image")));
-            this.BtnSil.Location = new System.Drawing.Point(86, 160);
+            this.BtnSil.Location = new System.Drawing.Point(86, 182);
             this.BtnSil.Name = "BtnSil";
             this.BtnSil.Size = new System.Drawing.Size(149, 24);
             this.BtnSil.TabIndex = 9;
@@ -91,7 +91,7 @@
             // BtnGuncelle
             // 
             this.BtnGuncelle.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnGuncelle.ImageOptions.Image")));
-            this.BtnGuncelle.Location = new System.Drawing.Point(86, 190);
+            this.BtnGuncelle.Location = new System.Drawing.Point(86, 212);
             this.BtnGuncelle.Name = "BtnGuncelle";
             this.BtnGuncelle.Size = new System.Drawing.Size(149, 24);
             this.BtnGuncelle.TabIndex = 7;
@@ -101,7 +101,7 @@
             // BtnEkle
             // 
             this.BtnEkle.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnEkle.ImageOptions.Image")));
-            this.BtnEkle.Location = new System.Drawing.Point(86, 130);
+            this.BtnEkle.Location = new System.Drawing.Point(86, 152);
             this.BtnEkle.Name = "BtnEkle";
             this.BtnEkle.Size = new System.Drawing.Size(149, 24);
             this.BtnEkle.TabIndex = 5;
@@ -111,14 +111,15 @@
             // TxtAd
             // 
             this.TxtAd.EditValue = "";
-            this.TxtAd.Location = new System.Drawing.Point(86, 74);
+            this.TxtAd.Location = new System.Drawing.Point(86, 96);
             this.TxtAd.Name = "TxtAd";
             this.TxtAd.Size = new System.Drawing.Size(149, 20);
             this.TxtAd.TabIndex = 4;
+            this.TxtAd.EditValueChanged += new System.EventHandler(this.TxtAd_EditValueChanged);
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(6, 74);
+            this.labelControl2.Location = new System.Drawing.Point(6, 99);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(78, 13);
             this.labelControl2.TabIndex = 3;
@@ -127,7 +128,7 @@
             // BtnListele
             // 
             this.BtnListele.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("BtnListele.ImageOptions.Image")));
-            this.BtnListele.Location = new System.Drawing.Point(86, 100);
+            this.BtnListele.Location = new System.Drawing.Point(86, 122);
             this.BtnListele.Name = "BtnListele";
             this.BtnListele.Size = new System.Drawing.Size(149, 24);
             this.BtnListele.TabIndex = 2;
@@ -136,14 +137,14 @@
             // 
             // TxtID
             // 
-            this.TxtID.Location = new System.Drawing.Point(86, 48);
+            this.TxtID.Location = new System.Drawing.Point(86, 67);
             this.TxtID.Name = "TxtID";
             this.TxtID.Size = new System.Drawing.Size(149, 20);
             this.TxtID.TabIndex = 1;
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(6, 51);
+            this.labelControl1.Location = new System.Drawing.Point(6, 70);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(74, 13);
             this.labelControl1.TabIndex = 0;
@@ -153,7 +154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(968, 323);
+            this.ClientSize = new System.Drawing.Size(968, 346);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.gridControl1);
             this.Name = "FrmDepartmanlar";

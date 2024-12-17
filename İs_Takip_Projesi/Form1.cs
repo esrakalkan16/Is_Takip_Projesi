@@ -31,8 +31,31 @@ namespace İs_Takip_Projesi
 
         private void BtnPersonelListesi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            //patlatttık
+            Formlar.FrmPersoneler frm2 = new Formlar.FrmPersoneler();
+            frm2.MdiParent = this;
+            frm2.Show();
             
+        }
+
+        private void BtnPersonelİstatislik_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Formlar.FrmPersonelİstatislik frm3 = new Formlar.FrmPersonelİstatislik();
+            frm3.MdiParent = this;
+            frm3.Show();
+
+        }
+
+        private void BtnGorevListesi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Formlar.FrmGorevListesi frm4 = new Formlar.FrmGorevListesi();
+            frm4.MdiParent = this;
+            frm4.Show();
+        }
+
+        private void BtnGorevTanimla_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Formlar.FrmGorev fr = new Formlar.FrmGorev();
+            fr.Show();
         }
     }
 }

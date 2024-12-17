@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPersoneler));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.cardView1 = new DevExpress.XtraGrid.Views.Card.CardView();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -50,6 +51,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cardView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
@@ -65,16 +67,26 @@
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(729, 322);
+            this.gridControl1.Size = new System.Drawing.Size(729, 347);
             this.gridControl1.TabIndex = 6;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gridView1,
+            this.cardView1});
+            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             // 
             // gridView1
             // 
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsScrollAnnotations.ShowFocusedRow = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.FocusedRowChanged += new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventHandler(this.gridView1_FocusedRowChanged);
+            // 
+            // cardView1
+            // 
+            this.cardView1.GridControl = this.gridControl1;
+            this.cardView1.Name = "cardView1";
             // 
             // groupControl1
             // 
@@ -96,7 +108,7 @@
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Location = new System.Drawing.Point(729, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(240, 322);
+            this.groupControl1.Size = new System.Drawing.Size(240, 347);
             this.groupControl1.TabIndex = 7;
             // 
             // lookUpEdit1
@@ -173,6 +185,7 @@
             this.BtnSil.Size = new System.Drawing.Size(149, 24);
             this.BtnSil.TabIndex = 9;
             this.BtnSil.Text = "Sil";
+            this.BtnSil.Click += new System.EventHandler(this.BtnSil_Click);
             // 
             // BtnGuncelle
             // 
@@ -182,6 +195,7 @@
             this.BtnGuncelle.Size = new System.Drawing.Size(149, 24);
             this.BtnGuncelle.TabIndex = 7;
             this.BtnGuncelle.Text = "Güncelle";
+            this.BtnGuncelle.Click += new System.EventHandler(this.BtnGuncelle_Click);
             // 
             // BtnEkle
             // 
@@ -238,7 +252,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(968, 323);
+            this.ClientSize = new System.Drawing.Size(968, 346);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.groupControl1);
             this.Name = "FrmPersoneler";
@@ -246,6 +260,7 @@
             this.Load += new System.EventHandler(this.FrmPersoneler_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cardView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
@@ -280,5 +295,6 @@
         private DevExpress.XtraEditors.TextEdit TxtSoyad;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
+        private DevExpress.XtraGrid.Views.Card.CardView cardView1;
     }
 }
